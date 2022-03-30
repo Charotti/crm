@@ -4,8 +4,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-
-const secret = "5aJif0OZjepB63NRwyNSkk0czzttHKjXNQbEImrW";
+const secret = process.env.SERVER_CODE;
 
 router.get("/", (req, res) => {
   res.json({ message: "register router" });

@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const secret = process.env.SERVER_CODE;
 
-const secret = "5aJif0OZjepB63NRwyNSkk0czzttHKjXNQbEImrW";
 // USER MODEL
 const User = require("../models/userModel");
 
