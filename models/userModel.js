@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema({
     minLenght: 6,
   },
   contacts: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+  isAdmin: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
