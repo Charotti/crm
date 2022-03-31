@@ -17,15 +17,16 @@ function isLoggedIn(req, res, next) {
       message: "You are not logged in",
     });
   }
-  console.log(data);
+  // console.log(data);
   req.data = data;
   next();
 }
 
 router.get("/", isLoggedIn, async (req, res) => {
-  const user = await User.findById(req.data.id).populate("contacts");
-
-  res.json({ data: user.contacts, nb: user.contacts.length });
+  console.log(req.query);
+  // const user = await User.findById(req.data.id).populate("contacts");
+  const contacts = await Contact.find({ id: req.data.id });
+  res.json({ data: contacts, nb: contacts.length });
 });
 
 router.post("/", isLoggedIn, async (req, res) => {

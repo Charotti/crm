@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 // MONGODB
 const mongoose = require("mongoose");
+const router = require("./routers/contactRouter");
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -28,5 +29,11 @@ mongoose
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/contacts", contactRouter);
+
+//LOGOUT
+app.get("/logout", (req, res) => {
+  res.clearCookie("jwt");
+  return res.json({ message: "Vous êtes déconnectée" });
+});
 
 app.listen(8001, () => console.log("Listen port 8001..."));
