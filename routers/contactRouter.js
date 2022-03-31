@@ -42,5 +42,14 @@ router.post("/", isLoggedIn, async (req, res) => {
   }
   res.status(201).json({ message: "Contact created" });
 });
+router.put("/:id", isLoggedIn, async (req, res) => {
+  let contact;
+  try {
+    contact = await Contact.findByIdAndUpdate(req.params.id, req.body);
+  } catch (err) {
+    return res.status(400).json({ message: err });
+  }
+  res.status(201).json({ message: "contact updated" });
+});
 
 module.exports = router;
