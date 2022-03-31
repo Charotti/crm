@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const Contact = require("../models/contactModel");
-const { post } = require("./loginRouter");
+const { post, route } = require("./loginRouter");
 
 const secret = process.env.SERVER_CODE;
 
@@ -27,6 +27,7 @@ router.get("/", isLoggedIn, async (req, res) => {
 
   res.json({ data: user.contacts, nb: user.contacts.length });
 });
+
 router.post("/", isLoggedIn, async (req, res) => {
   let contact;
   try {
@@ -42,6 +43,7 @@ router.post("/", isLoggedIn, async (req, res) => {
   }
   res.status(201).json({ message: "Contact created" });
 });
+
 router.put("/:id", isLoggedIn, async (req, res) => {
   let contact;
   try {
@@ -50,6 +52,16 @@ router.put("/:id", isLoggedIn, async (req, res) => {
     return res.status(400).json({ message: err });
   }
   res.status(201).json({ message: "contact updated" });
+});
+
+router.delete("/:id", isLoggedIn, async (req, res) => {
+  let contact;
+  try {
+    contact = await Contact.findByIdAndDelete(req.params.id);
+  } catch (err) {
+    return res.status(400).json({ message: err });
+  }
+  res.status(201).json({ message: "contact deleted" });
 });
 
 module.exports = router;
