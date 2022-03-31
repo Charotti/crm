@@ -8,7 +8,7 @@ dotenv.config({
 // ROUTERS
 const loginRouter = require("./routers/loginRouter");
 const registerRouter = require("./routers/registerRouter");
-
+const contactsRouter = require("./routers/contactsRouter");
 app.use(express.json());
 // MONGODB
 const mongoose = require("mongoose");
@@ -23,5 +23,6 @@ mongoose
 // ROUTES
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/contacts", contactsRouter);
 
 app.listen(8001, () => console.log("Listen port 8001..."));
