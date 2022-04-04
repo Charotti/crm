@@ -5,6 +5,7 @@ dotenv.config({
   path: "./config.env",
 });
 const cookieParser = require("cookie-parser");
+const port = process.env.PORT || 8000;
 
 // ROUTERS
 const loginRouter = require("./routers/loginRouter");
@@ -38,4 +39,4 @@ app.get("/logout", (req, res) => {
   return res.json({ message: "Vous êtes déconnectée" });
 });
 
-app.listen(8001, () => console.log("Listen port 8001..."));
+app.listen(port, () => console.log(`listening on port: ${port}`));
