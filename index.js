@@ -38,5 +38,8 @@ app.get("/logout", (req, res) => {
   res.clearCookie("jwt");
   return res.json({ message: "Vous êtes déconnectée" });
 });
+app.get("/", (req, res) => {
+  res.send("homepage");
+});
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
